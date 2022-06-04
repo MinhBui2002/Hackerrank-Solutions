@@ -28,4 +28,14 @@ public class Pangrams {
 		sc.close();
 	}
 
+	static String PangramsCheck(String s) {
+		s = s.toLowerCase();
+		String pan = "qwertyuiopasdfghjklzxcvbnm";
+		for (char c : pan.toCharArray()) {
+			if (!s.contains("" + c))
+				return "not pangram";
+		}
+		return "pangram";
+	}
+
 }

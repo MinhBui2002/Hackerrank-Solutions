@@ -12,24 +12,20 @@ import java.util.Scanner;
 public class PalindromeIndex {
 
 	static int palindromeIndex(String s) {
-		int palindromeIndex = -1;
-		int len = s.length();
-
-		for (int i = 0; i < len / 2; i++) {
-			if (s.charAt(i) != s.charAt(len - i - 1)) {
-
-				if (i + 1 < len) {
-					boolean isRightStringValidPalindrome = isValidPalindrome(s.substring(i + 1, len - i));
-					if (isRightStringValidPalindrome)
-						return i;
-					return len - i - 1;
-				}
-
-			}
+		int l = s.length();
+		int i, j, a, b;
+		for (i = 0, j = l - 1; i < l; i++, j--) {
+			if (s.charAt(i) != s.charAt(j))
+				break;
 		}
+		if (i > j)
+			return -1;
 
-		return palindromeIndex;
-
+		for (a = i + 1, b = j; a < j && b > i + 1; a++, b--) {
+			if (s.charAt(a) != s.charAt(b))
+				return j;
+		}
+		return i;
 	}
 
 	public static boolean isValidPalindrome(String str) {

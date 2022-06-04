@@ -6,38 +6,42 @@
  */
 package com.javaaid.hackerrank.solutions.algorithms.strings;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author Kanahaiya Gupta
  *
  */
 public class TwoStrings {
-	static String twoStrings(String s1, String s2) {
-		int len = s1.length() < s2.length() ? s1.length() : s2.length();
-		int charExist[] = new int[26];
+	public static void main(String[] args) {
+		/*
+		 * Enter your code here. Read input from STDIN. Print output to STDOUT. Your
+		 * class should be named Solution.
+		 */
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for (int i = 0; i < T; i++) {
+			Set<Character> charSet1 = toCharSet(sc.next());
+			Set<Character> charSet2 = toCharSet(sc.next());
 
-		for (int i = 0; i < len; i++) {
-			int index = s1.charAt(i) - 'a';
-			charExist[index] = 1;
-		}
-		for (int i = 0; i < len; i++) {
-			int index = s2.charAt(i) - 'a';
-			if (charExist[index] > 0)
-				return "YES";
+			charSet1.retainAll(charSet2);
 
+			if (charSet1.size() > 0) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
+			}
 		}
-		return "NO";
 	}
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		int q = in.nextInt();
-		for (int a0 = 0; a0 < q; a0++) {
-			String s1 = in.next();
-			String s2 = in.next();
-			String result = twoStrings(s1, s2);
-			System.out.println(result);
+	public static Set<Character> toCharSet(String word) {
+		Set<Character> charSet = new HashSet<Character>();
+
+		for (int i = 0; i < word.length(); i++) {
+			charSet.add(word.charAt(i));
 		}
+
+		return charSet;
+
 	}
 }
